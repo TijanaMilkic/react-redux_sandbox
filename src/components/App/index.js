@@ -1,16 +1,29 @@
 import React, { Component } from 'react';
+import { BrowserRouter as Router, Route, Link, Redirect } from "react-router-dom";
+import Home from '../Home';
+import About from '../About';
 
 class App extends Component {
   render() {
     return (
-      <div className="App">
-        <header className="App-header">
-          <h1 className="App-title">Welcome to React</h1>
-        </header>
-        <p className="App-intro">
-          To get started, edit <code>src/App.js</code> and save to reload.
-        </p>
-      </div>
+      <Router>
+        <div>
+          <ul>
+            <li>
+              <Link to="/">Home</Link>
+            </li>
+            <li>
+              <Link to="/about">About</Link>
+            </li>
+          </ul>
+    
+          <hr />
+    
+          <Route exact path="/" component={Home} />
+          <Route path="/about" component={About} />
+          <Redirect to={"/"} />
+        </div>
+      </Router>
     );
   }
 }
