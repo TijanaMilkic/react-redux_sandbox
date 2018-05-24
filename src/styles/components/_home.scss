@@ -1,0 +1,8 @@
+.home {
+    h1 {
+        border: 1px solid red;
+        @media (min-width: 768px) {
+            border: none;
+        }
+    }
+   }

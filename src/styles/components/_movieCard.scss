@@ -1,0 +1,15 @@
+.movieCard {
+    display: flex;
+    margin: 15px;
+    position: relative;
+
+    CardContent {
+        padding-bottom: 150px;
+    }
+
+    Button {
+        position: absolute;
+        bottom: 0;
+        margin: 5px;
+    }
+}
