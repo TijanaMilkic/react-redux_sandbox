@@ -1,6 +1,9 @@
 import React from 'react';
 import {Link} from 'react-router-dom';
 
+import AddButton from '../Common/AddButton';
+import RemoveButton from '../Common/RemoveButton';
+
 import Card from '@material-ui/core/Card';
 import CardActions from '@material-ui/core/CardActions';
 import CardContent from '@material-ui/core/CardContent';
@@ -20,7 +23,7 @@ const styles = {
     },
   };
 
-  function MovieCard({movie, classes}) {
+  function MovieCard({movie, liked, onAdd, classes}) {
       
     return (
       <div className="movieCard">
@@ -42,6 +45,7 @@ const styles = {
             <Button size="small" color="primary">
               <Link to={`movie-detail/${movie.imdbID}`}>More</Link>
             </Button>
+            {liked ? <RemoveButton /> : <AddButton />}
           </CardActions>
         </Card>
       </div>

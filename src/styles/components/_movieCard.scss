@@ -11,5 +11,8 @@
         position: absolute;
         bottom: 0;
         margin: 5px;
+        &:last-child {
+            right: 10px;
+        }
     }
 }
