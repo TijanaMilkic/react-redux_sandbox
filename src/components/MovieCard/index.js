@@ -23,7 +23,7 @@ const styles = {
     },
   };
 
-  function MovieCard({movie, liked, onAdd, classes}) {
+  function MovieCard({movie, liked, onAdd, onRemove, classes}) {
       
     return (
       <div className="movieCard">
@@ -45,7 +45,7 @@ const styles = {
             <Button size="small" color="primary">
               <Link to={`movie-detail/${movie.imdbID}`}>More</Link>
             </Button>
-            {liked ? <RemoveButton /> : <AddButton />}
+            {liked ? <RemoveButton onClick={(e) => onRemove(movie)}/> : <AddButton onClick={(e) => onAdd(movie)}/>}
           </CardActions>
         </Card>
       </div>

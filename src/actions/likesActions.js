@@ -19,3 +19,9 @@ export function likeMovie(movie) {
         return dispatch(likeMovieSuccess(movie));
     }
 }
+
+export function unlikeMovie(movie) {
+    return dispatch => {
+        return dispatch(unlikeMovieSuccess(movie));
+    }
+}

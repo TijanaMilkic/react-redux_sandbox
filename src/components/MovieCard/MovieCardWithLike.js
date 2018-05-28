@@ -5,8 +5,8 @@ import MovieCard from './index';
 import * as likesActions from '../../actions/likesActions';
 
 function mapStateToProps(state, ownProps) {
-    let liked;
-    state.likes.map(movie => movie.imdbID === ownProps.movie.imdbID ? liked = true : liked = false);
+    let liked = false;
+    state.likes.map(movie => movie.imdbID === ownProps.movie.imdbID && (liked = true));
 
     return {
         liked,
@@ -24,18 +24,22 @@ class MovieCardWithLike extends Component {
     constructor(props) {
         super(props);
 
-        this.clickHandler = this.clickHandler.bind(this);
+        this.addHandler = this.addHandler.bind(this);
+        this.removeHandler = this.removeHandler.bind(this);
     }
 
-    clickHandler() {
-        //this.props.actions.likeMovie(movie);
-        console.log('clicked');
+    addHandler(movie) {
+        this.props.actions.likeMovie(movie);
+    }
+
+    removeHandler(movie) {
+        this.props.actions.unlikeMovie(movie);
     }
 
     render() {
         return (
             <div>
-                <MovieCard movie={this.props.movies} liked={this.props.liked} onAdd={this.clickHandler}/>
+                <MovieCard movie={this.props.movies} liked={this.props.liked} onAdd={this.addHandler} onRemove={this.removeHandler}/>
             </div>
         );
     }

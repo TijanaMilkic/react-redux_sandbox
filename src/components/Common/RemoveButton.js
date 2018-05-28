@@ -11,9 +11,9 @@ const styles = theme => ({
   });
 
 const RemoveButton = (props) => {
-    const { classes } = props;
+    const { classes, onClick } = props;
     return (
-        <Button variant="fab" color="secondary" aria-label="add" className={classes.button}>
+        <Button variant="fab" color="secondary" aria-label="add" className={classes.button} onClick={onClick}>
             <DeleteIcon />
         </Button>
     );
