@@ -45,7 +45,7 @@ const styles = {
             <Button size="small" color="primary">
               <Link to={`movie-detail/${movie.imdbID}`}>More</Link>
             </Button>
-            {liked ? <RemoveButton onClick={(e) => onRemove(movie)}/> : <AddButton onClick={(e) => onAdd(movie)}/>}
+            {liked ? <RemoveButton onClick={() => onRemove(movie)}/> : <AddButton onClick={() => onAdd(movie)}/>}
           </CardActions>
         </Card>
       </div>

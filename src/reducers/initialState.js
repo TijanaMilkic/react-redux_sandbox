@@ -1,5 +1,5 @@
 export default {
-    movies: [],
+    movies: null,
     likes: [
         {
             "Title": "Dirk Gently's Holistic Detective Agency",
@@ -17,10 +17,10 @@ export default {
             "Awards": "1 win & 2 nominations.",
             "Poster": "https://ia.media-imdb.com/images/M/MV5BMTU3MDkzNzM5NF5BMl5BanBnXkFtZTgwMzEyNTgyMDI@._V1_SX300.jpg",
             "Ratings": [
-              {
-                "Source": "Internet Movie Database",
-                "Value": "8.4/10"
-              }
+                {
+                    "Source": "Internet Movie Database",
+                    "Value": "8.4/10"
+                }
             ],
             "Metascore": "N/A",
             "imdbRating": "8.4",

@@ -12,9 +12,11 @@ export default function likesReducer(state = initialState.likes, action) {
             ]
 
         case types.UNLIKE_MOVIE_SUCCESS:
-            const index = state.map(movie => movie.imdbID).indexOf(action.movie.imdbID);
+            const index = state
+                .map(movie => movie.imdbID)
+                .indexOf(action.movie.imdbID);
             return [
-                ...state.slice(0, index), 
+                ...state.slice(0, index),
                 ...state.slice(index + 1)
             ]
 
