@@ -3,6 +3,16 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import * as movieActions from '../../actions/movieActions';
 import MoviCard from '../MovieCard/MovieCardWithLike';
+import { withStyles } from '@material-ui/core';
+import CircularProgress from '@material-ui/core/CircularProgress';
+import compose from 'recompose/compose';
+
+
+const styles = theme => ({
+    progress: {
+        margin: theme.spacing.unit * 2,
+    },
+});
 
 function mapStateToProps(state, ownProps) {
     return {
@@ -16,8 +26,6 @@ function mapDispatchToProps(dispatch) {
     };
 }
 
-//const url = movieActions.fetchMovie('Killing', 2017);
-
 
 class SearchMovieForm extends Component {
     constructor(props) {
@@ -26,10 +34,17 @@ class SearchMovieForm extends Component {
         this.state = {
             title: '',
             year: '',
+            loading: false
         };
 
         this.handleChange = this.handleChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
+    }
+
+    componentDidUpdate(prevProps, prevState) {
+        if (prevProps.movie !== this.props.movie) {
+            this.setState({loading: false})
+        }
     }
 
     handleChange = name => event => {
@@ -40,6 +55,7 @@ class SearchMovieForm extends Component {
 
     handleSubmit(event) {
         event.preventDefault();
+        this.setState({loading: true})
         this.props.actions.loadMovie(this.state.title, this.state.year);
     }
 
@@ -55,16 +71,17 @@ class SearchMovieForm extends Component {
                         Year:
                     <input type="number" value={this.state.year} onChange={this.handleChange('year')} />
                     </label>
-                    <input type="submit" value="Submit" />
+                    <input type="submit" value="Submit" disabled={this.state.loading} />
                 </form>
                 {this.props.movie && (<MoviCard key={this.props.movie.imdbID} movie={this.props.movie} />)}
-                
+
+                {this.state.loading && (<CircularProgress className={this.props.classes.progress} size={50} />)}
             </div>
         );
     }
 }
 
-export default connect(
-    mapStateToProps,
-    mapDispatchToProps
+export default compose(
+    withStyles(styles),
+    connect(mapStateToProps, mapDispatchToProps)
 )(SearchMovieForm);
