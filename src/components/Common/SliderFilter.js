@@ -15,6 +15,12 @@ class SliderFilter extends React.Component {
 
   handleChange = (event, value) => this.setState({ value });
 
+  componentDidUpdate(prevProp, prevState) {
+    if (prevState !== this.state) {
+      this.props.applyFilter(this.state.value)
+    }
+  }
+
   render() {
     const { classes } = this.props;
     const { value } = this.state;

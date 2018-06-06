@@ -4,20 +4,39 @@ import FormGroup from '@material-ui/core/FormGroup';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 
 class GenreFilter extends React.Component {
-    state = {
-        Drama: false,
-        Comedy: false,
-        Action: false,
-        Thriller: false,
-        Crime: false,
-        Horror: false,
-        Mystery: false,
-        Scifi: false,
-    };
+    constructor(props) {
+        super(props)
+        this.state = {
+            Drama: false,
+            Comedy: false,
+            Action: false,
+            Thriller: false,
+            Crime: false,
+            Horror: false,
+            Mystery: false,
+            'Sci-Fi': false,
+        }
+    }
 
     handleChange = name => event => {
         this.setState({ [name]: event.target.checked });
-    };
+    }
+
+    componentDidUpdate(prevProp, prevState) {
+        if (prevState !== this.state) {
+            this.props.applyFilter(this.makeFilterArray(this.state))
+        }
+    }
+
+    makeFilterArray(object) {
+        let filterArray = [];
+        Object.keys(object).forEach(function(key) {
+            if (object[key]) {
+              filterArray.push(key)
+            }
+        })
+        return filterArray
+    }
 
     render() {
         return (
@@ -103,7 +122,7 @@ class GenreFilter extends React.Component {
                     control={
                         <Checkbox
                             checked={this.state.checkedA}
-                            onChange={this.handleChange('Scifi')}
+                            onChange={this.handleChange('Sci-Fi')}
                             value="Sci-fi"
                             color="primary"
                         />
